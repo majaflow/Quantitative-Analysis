@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Assign 2: Calculator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<script src="demo.js">
+  </script>
+<body>
+<form id="myForm" onsubmit="showResponse(); return false">
+<label>Input First Number</label>
+<input id="input1" type="number" name="input1" required></input>
+<label>Choose an Operator</label>
+<select id="operator">
+  <option value="+">+</option>
+  <option value="-">-</option>
+  <option value="^">^</option>
+  <option value="*">*</option>
+</select>
+<label>Input Second Number</label>
+<input id="input2" type="number"></input>
+<input type="submit">Calculate</input>
+</form>
+
+</body>
+</html>
