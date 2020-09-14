@@ -1,10 +1,14 @@
 
 
+
 function showResponse() {
-var name = document.getElementById("name").value
-var responsetext =  `Your name is ${name}`
-var response = document.getElementById("response")
-response.hidden = false
+var input1 = document.getElementById("input1").value
+var input2 = document.getElementById("input2").value
+var operator = document.getElementById("operator").value
+var total = eval(`${input1}`+`${operator}`+`${input2}`)
+var responsetext =  `Output: ${input1} ${operator} ${input2} = ${total}`
+var response = document.createElement('label')
 response.innerText = responsetext
+document.appendChild(response)
 }
 
