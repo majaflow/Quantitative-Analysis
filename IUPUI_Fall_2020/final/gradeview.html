@@ -1,0 +1,164 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="login.css">
+    <script defer src="gradeview.js"></script>
+</head>
+<body>
+    <main id="main-holder">
+    <div id="login-error-msg-holder">
+      </div>
+  <div id="grades">
+      <button id="addGrade"> Add Grade</button>
+  </div>
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-body">
+            <form id="login-form">
+                <input type="text" name="studentName" id="name-field" class="login-form-field" placeholder="Student Name">
+                <input type="text" name="grade" id="score-field" class="score-form-field" placeholder="Score">
+                <input type="submit" value="Update Grades" id="grade-form-submit">
+              </form>
+        </div>
+      </div>
+    </div>
+</main>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<h2>All Students Grade's View</h2>
+<div id="grades-list"></div>
+
+
+
+<!-- Trigger/Open The Modal -->
+<button id="myBtn">Add Grade</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <form id="grade-form">
+        <input type="text" name="studentName" id="name-field" placeholder="Student Name">
+        <input type="text" name="grade" id="score-field" placeholder="Score">
+        <input type="submit" value="Update Grades" id="grade-form-submit">
+      </form>
+  </div>
+
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+var submitBtn = document.getElementById("grade-form-submit")
+var gradeForm = document.getElementById("grade-form")
+var gradesList = document.getElementById("grades-list")
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+submitBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    checkInputs()
+})
+
+function checkInputs() {
+  const name = gradeForm.studentName.value;
+  const score = gradeForm.grade.value;
+  var grade = Number(score)
+  if (name == "" && score == "") {
+    alert("fill out both fields")
+  } else if (score == ""  && name != "") {
+    alert("fill out the score field")
+  } else if ( score != "" && score != null && score != undefined && grade != null && grade != undefined && name != "" && name != undefined && name != null) {
+     if (grade >= 0 && grade <= 100) {
+        var studentname = document.createElement("p")
+        studentname.innerHTML = `Name: ${name} Grade: ${score}`
+        gradesList.appendChild(studentname)
+        modal.style.display = "none";
+    } else if (grade < 0 ||grade > 100){
+        alert("Your Graded Score cannot be a number outside of range 0 ato 100")
+    }
+  } else {
+    alert("fill out the name field")
+  }
+
+}
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
+
+</body>
+</html>
